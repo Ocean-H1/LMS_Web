@@ -38,10 +38,19 @@ const roleList = (() => {
 
 const deptList = (() => {
   const result: any[] = [];
-  for (let index = 0; index < 3; index++) {
+  for (let index = 0; index < 8; index++) {
     result.push({
       id: `${index}`,
-      deptName: ['华东分部', '华南分部', '西北分部'][index],
+      deptName: [
+        '计算机学院',
+        '人文与外国语学院',
+        '自动化学院',
+        '网络空间安全学院',
+        '通信与信息工程学院',
+        '电子工程学院',
+        '经济与管理学院',
+        '数字艺术学院',
+      ][index],
       orderNo: index + 1,
       createTime: '@datetime',
       remark: '@cword(10,20)',
@@ -51,7 +60,7 @@ const deptList = (() => {
         for (let j = 0; j < 4; j++) {
           children.push({
             id: `${index}-${j}`,
-            deptName: ['研发部', '市场部', '商务部', '财务部'][j],
+            deptName: ['计算机科学与技术', '网络工程', '软件工程', '数据科学与大数据'][j],
             orderNo: j + 1,
             createTime: '@datetime',
             remark: '@cword(10,20)',

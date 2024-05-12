@@ -1,7 +1,7 @@
 <template>
   <div class="m-4 mr-0 overflow-hidden bg-white">
     <BasicTree
-      title="学院列表"
+      title="设备列表"
       toolbar
       search
       treeWrapperClassName="h-[calc(100%-35px)] overflow-auto"
@@ -16,7 +16,7 @@
   import { onMounted, ref } from 'vue';
 
   import { BasicTree, TreeItem } from '@/components/Tree';
-  import { getDeptList } from '@/api/demo/system';
+  // import { getDeptList } from '@/api/demo/system';
 
   defineOptions({ name: 'DeptTree' });
 
@@ -25,7 +25,7 @@
   const treeData = ref<TreeItem[]>([]);
 
   async function fetch() {
-    treeData.value = (await getDeptList()) as unknown as TreeItem[];
+    // treeData.value = (await getDeptList()) as unknown as TreeItem[];
   }
 
   function handleSelect(keys) {

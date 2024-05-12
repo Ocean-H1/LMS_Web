@@ -9,7 +9,7 @@ const system: AppRouteModule = {
   component: LAYOUT,
   redirect: '/system/account',
   meta: {
-    orderNo: 2000,
+    orderNo: 1,
     icon: 'ion:settings-outline',
     title: t('routes.demo.system.moduleName'),
   },
@@ -22,6 +22,34 @@ const system: AppRouteModule = {
         ignoreKeepAlive: false,
       },
       component: () => import('@/views/demo/system/account/index.vue'),
+    },
+    {
+      path: 'log',
+      name: 'LogManagement',
+      meta: {
+        title: t('routes.demo.system.log'),
+        ignoreKeepAlive: true,
+      },
+      redirect: '/log/upload',
+      children: [
+        {
+          path: 'upload',
+          name: 'LogUpload',
+          meta: {
+            title: t('routes.demo.system.logUpload'),
+          },
+          component: () => import('@/views/demo/system/log/logUpload/index.vue'),
+        },
+      ],
+    },
+    {
+      path: 'equipment',
+      name: 'equipmentManagement',
+      meta: {
+        title: t('routes.demo.system.equipment'),
+        ignoreKeepAlive: true,
+      },
+      component: () => import('@/views/demo/system/equipment/index.vue'),
     },
     {
       path: 'vxeTableAccount',

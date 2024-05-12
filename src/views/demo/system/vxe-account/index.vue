@@ -1,6 +1,6 @@
 <template>
   <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
-    <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" />
+    <!-- <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" /> -->
     <div class="m-4 vxebasic-form-container">
       <VxeBasicTable ref="tableRef" v-bind="gridOptions">
         <template #action="{ row }">
@@ -15,12 +15,12 @@
   import { ActionItem, TableAction } from '@/components/Table';
   import { getAccountList } from '@/api/demo/system';
   import { PageWrapper } from '@/components/Page';
-  import DeptTree from '../account/DeptTree.vue';
+  // import DeptTree from '../account/DeptTree.vue';
   import { columns, searchFormSchema } from './vxeAccount.data';
   import { BasicTableProps, VxeBasicTable, VxeGridInstance } from '@/components/VxeTable';
 
   const tableRef = ref<VxeGridInstance>();
-  const searchInfo = ref();
+  // const searchInfo = ref();
   const gridOptions = reactive<BasicTableProps>({
     id: 'VxeTable',
     keepSource: true,
@@ -37,19 +37,19 @@
             page: page.currentPage,
             pageSize: page.pageSize,
             ...form,
-            searchInfo: searchInfo.value,
+            // searchInfo: searchInfo.value,
           });
         },
       },
     },
   });
 
-  const handleSelect = (deptId = '') => {
-    searchInfo.value = deptId;
-    if (tableRef.value) {
-      tableRef.value.commitProxy('query');
-    }
-  };
+  // const handleSelect = (deptId = '') => {
+  //   searchInfo.value = deptId;
+  //   if (tableRef.value) {
+  //     tableRef.value.commitProxy('query');
+  //   }
+  // };
 
   // 操作按钮（权限控制）
   const createActions = (record) => {

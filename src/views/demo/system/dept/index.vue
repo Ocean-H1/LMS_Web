@@ -2,7 +2,7 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增部门 </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增学院 </a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -42,7 +42,7 @@
 
   const [registerModal, { openModal }] = useModal();
   const [registerTable, { reload }] = useTable({
-    title: '部门列表',
+    title: '学院列表',
     api: getDeptList,
     columns,
     formConfig: {

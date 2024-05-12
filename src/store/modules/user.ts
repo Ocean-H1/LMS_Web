@@ -6,7 +6,7 @@ import { RoleEnum } from '@/enums/roleEnum';
 import { PageEnum } from '@/enums/pageEnum';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum';
 import { getAuthCache, setAuthCache } from '@/utils/auth';
-import { GetUserInfoModel, LoginParams } from '@/api/sys/model/userModel';
+import { GetUserInfoModel, LoginParams, LoginResultModel } from '@/api/sys/model/userModel';
 import { doLogout, getUserInfo, loginApi } from '@/api/sys/user';
 import { useI18n } from '@/hooks/web/useI18n';
 import { useMessage } from '@/hooks/web/useMessage';
@@ -90,8 +90,8 @@ export const useUserStore = defineStore({
     ): Promise<GetUserInfoModel | null> {
       try {
         const { goHome = true, mode, ...loginParams } = params;
-        const data = await loginApi(loginParams, mode);
-        const { token } = data;
+        const res = await loginApi(loginParams, mode);
+        const { token } = res;
 
         // save token
         this.setToken(token);
@@ -105,37 +105,40 @@ export const useUserStore = defineStore({
       // get user info
       const userInfo = await this.getUserInfoAction();
 
-      const sessionTimeout = this.sessionTimeout;
-      if (sessionTimeout) {
-        this.setSessionTimeout(false);
-      } else {
-        const permissionStore = usePermissionStore();
+      // const sessionTimeout = this.sessionTimeout;
+      // if (sessionTimeout) {
+      //   this.setSessionTimeout(false);
+      // } else {
+      //   const permissionStore = usePermissionStore();
 
-        // 动态路由加载（首次）
-        if (!permissionStore.isDynamicAddedRoute) {
-          const routes = await permissionStore.buildRoutesAction();
-          [...routes, PAGE_NOT_FOUND_ROUTE].forEach((route) => {
-            router.addRoute(route as unknown as RouteRecordRaw);
-          });
-          // 记录动态路由加载完成
-          permissionStore.setDynamicAddedRoute(true);
-        }
+      //   // 动态路由加载（首次）
+      //   if (!permissionStore.isDynamicAddedRoute) {
+      //     const routes = await permissionStore.buildRoutesAction();
+      //     [...routes, PAGE_NOT_FOUND_ROUTE].forEach((route) => {
+      //       router.addRoute(route as unknown as RouteRecordRaw);
+      //     });
+      //     // 记录动态路由加载完成
+      //     permissionStore.setDynamicAddedRoute(true);
+      //   }
 
-        goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));
-      }
+      //   goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));
+      // }
+
+      goHome && (await router.replace(userInfo?.homePath || PageEnum.BASE_HOME));
       return userInfo;
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
       const userInfo = await getUserInfo();
-      const { roles = [] } = userInfo;
-      if (isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as RoleEnum[];
-        this.setRoleList(roleList);
-      } else {
-        userInfo.roles = [];
-        this.setRoleList([]);
-      }
+
+      // const { roles = [] } = userInfo;
+      // if (isArray(roles)) {
+      //   const roleList = roles.map((item) => item.value) as RoleEnum[];
+      //   this.setRoleList(roleList);
+      // } else {
+      //   userInfo.roles = [];
+      //   this.setRoleList([]);
+      // }
       this.setUserInfo(userInfo);
       return userInfo;
     },

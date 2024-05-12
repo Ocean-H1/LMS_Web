@@ -21,7 +21,7 @@ const userInfo = {
     },
     {
       key: '2',
-      label: '辣~',
+      label: '头脑风暴',
     },
     {
       key: '3',
@@ -29,7 +29,7 @@ const userInfo = {
     },
     {
       key: '4',
-      label: '川妹子',
+      label: '普通',
     },
     {
       key: '5',

@@ -25,53 +25,38 @@ export const deptMap = (() => {
 
 export const columns: BasicColumn[] = [
   {
-    title: '用户名',
-    dataIndex: 'username',
-    width: 150,
-  },
-  // {
-  //   title: '昵称',
-  //   dataIndex: 'nickname',
-  //   width: 120,
-  // },
-  {
-    title: '邮箱',
-    dataIndex: 'email',
-    width: 180,
+    title: '设备名',
+    dataIndex: 'account',
+    width: 120,
   },
   {
     title: '创建时间',
-    dataIndex: 'created_at',
+    dataIndex: 'createTime',
     width: 180,
   },
   {
-    title: '角色',
-    dataIndex: 'role_name',
-    width: 150,
+    title: '所属实验室',
+    dataIndex: 'dept',
+    customRender: ({ value }) => {
+      return deptMap[value];
+    },
   },
-  // {
-  //   title: '所属学院',
-  //   dataIndex: 'dept',
-  //   customRender: ({ value }) => {
-  //     return deptMap[value];
-  //   },
-  // },
-  // {
-  //   title: '备注',
-  //   dataIndex: 'remark',
-  // },
+  {
+    title: '备注',
+    dataIndex: 'remark',
+  },
 ];
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'account',
-    label: '用户名',
+    field: 'equipmentName',
+    label: '设备名',
     component: 'Input',
     colProps: { span: 8 },
   },
   {
-    field: 'nickname',
-    label: '昵称',
+    field: 'labName',
+    label: '实验室编号',
     component: 'Input',
     colProps: { span: 8 },
   },

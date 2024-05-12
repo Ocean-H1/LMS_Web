@@ -100,6 +100,8 @@
   import { useUserStore } from '@/store/modules/user';
   import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin';
   import { useDesign } from '@/hooks/web/useDesign';
+  // import { defHttp } from '@/utils/http/axios';
+  // import { extractData } from '@/utils/extractData';
   //import { onKeyStroke } from '@vueuse/core';
 
   const ACol = Col;
@@ -119,8 +121,8 @@
   const rememberMe = ref(false);
 
   const formData = reactive({
-    account: 'admin',
-    password: 'admin',
+    account: 'oceanh',
+    password: 'oceanh',
   });
 
   const { validForm } = useFormValid(formRef);
@@ -132,17 +134,42 @@
   async function handleLogin() {
     const data = await validForm();
     if (!data) return;
+    // try {
+    //   loading.value = true;
+    //   const res = await defHttp.post({
+    //     url: '/permissions/login',
+    //     data: {
+    //       usernameOrEmail: data.account,
+    //       attemptedPassword: data.password,
+    //     },
+    //   });
+
+    //   const userInfo = extractData(res);
+    //   if (userInfo) {
+    //     notification.success({
+    //       message: '登录成功',
+    //       description: `欢迎回来: ${userInfo.username}`,
+    //       duration: 3,
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // } finally {
+    //   loading.value = false;
+    // }
+
     try {
       loading.value = true;
       const userInfo = await userStore.login({
-        password: data.password,
-        username: data.account,
-        mode: 'none', //不要默认的错误提示
+        usernameOrEmail: data.account,
+        attemptedPassword: data.password,
+        // mode: 'none', //不要默认的错误提示
       });
+
       if (userInfo) {
         notification.success({
           message: t('sys.login.loginSuccessTitle'),
-          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
+          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.username}`,
           duration: 3,
         });
       }

@@ -4,7 +4,7 @@ import { Tag } from 'ant-design-vue';
 
 export const columns: BasicColumn[] = [
   {
-    title: '部门名称',
+    title: '学院名称',
     dataIndex: 'deptName',
     width: 160,
     align: 'left',
@@ -40,7 +40,7 @@ export const columns: BasicColumn[] = [
 export const searchFormSchema: FormSchema[] = [
   {
     field: 'deptName',
-    label: '部门名称',
+    label: '学院名称',
     component: 'Input',
     colProps: { span: 8 },
   },
@@ -61,7 +61,7 @@ export const searchFormSchema: FormSchema[] = [
 export const formSchema: FormSchema[] = [
   {
     field: 'deptName',
-    label: '部门名称',
+    label: '学院名称',
     component: 'Input',
     required: true,
   },

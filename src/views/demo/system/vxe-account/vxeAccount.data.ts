@@ -1,47 +1,47 @@
 import { VxeFormItemProps, VxeGridPropTypes } from '@/components/VxeTable';
-import { deptMap } from '../account/account.data';
+// import { deptMap } from '../account/account.data';
 
 export const columns: VxeGridPropTypes.Columns = [
   {
     title: '用户名',
-    field: 'account',
-    width: 120,
+    field: 'username',
+    width: 250,
   },
-  {
-    title: '昵称',
-    field: 'nickname',
-    width: 120,
-  },
+  // {
+  //   title: '昵称',
+  //   field: 'nickname',
+  //   width: 120,
+  // },
   {
     title: '邮箱',
     field: 'email',
-    width: 120,
+    width: 250,
   },
   {
     title: '创建时间',
-    field: 'createTime',
-    width: 180,
+    field: 'created_at',
+    width: 250,
   },
   {
     title: '角色',
-    field: 'role',
+    field: 'role_name',
     width: 200,
   },
+  // {
+  //   title: '所属部门',
+  //   field: 'dept',
+  //   slots: {
+  //     default: ({ row }) => {
+  //       return deptMap[row.dept];
+  //     },
+  //   },
+  // },
+  // {
+  //   title: '备注',
+  //   field: 'remark',
+  // },
   {
-    title: '所属部门',
-    field: 'dept',
-    slots: {
-      default: ({ row }) => {
-        return deptMap[row.dept];
-      },
-    },
-  },
-  {
-    title: '备注',
-    field: 'remark',
-  },
-  {
-    width: 160,
+    width: 300,
     title: '操作',
     align: 'center',
     slots: { default: 'action' },
@@ -51,7 +51,7 @@ export const columns: VxeGridPropTypes.Columns = [
 
 export const searchFormSchema: VxeFormItemProps[] = [
   {
-    field: 'account',
+    field: 'username',
     title: '用户名',
     itemRender: {
       name: 'AInput',
@@ -59,8 +59,8 @@ export const searchFormSchema: VxeFormItemProps[] = [
     span: 6,
   },
   {
-    field: 'nickname',
-    title: '昵称',
+    field: 'email',
+    title: '邮箱',
     itemRender: {
       name: 'AInput',
     },

@@ -1,10 +1,9 @@
 <template>
   <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
-    <!-- <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" /> -->
-    <!-- class="w-3/4 xl:w-4/5" -->
-    <BasicTable @register="registerTable" :searchInfo="searchInfo">
+    <EquipmentTree class="w-1/4 xl:w-1/5" @select="handleSelect" />
+    <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate">新增账号</a-button>
+        <a-button type="primary" @click="handleCreate">新增设备</a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -12,18 +11,18 @@
             :actions="[
               {
                 icon: 'clarity:info-standard-line',
-                tooltip: '查看用户详情',
+                tooltip: '查看设备详情',
                 onClick: handleView.bind(null, record),
               },
               {
                 icon: 'clarity:note-edit-line',
-                tooltip: '编辑用户资料',
+                tooltip: '编辑设备资料',
                 onClick: handleEdit.bind(null, record),
               },
               {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
-                tooltip: '删除此账号',
+                tooltip: '删除此设备',
                 popConfirm: {
                   title: '是否确认删除',
                   placement: 'left',
@@ -35,7 +34,7 @@
         </template>
       </template>
     </BasicTable>
-    <AccountModal @register="registerModal" @success="handleSuccess" />
+    <EquipmentModal @register="registerModal" @success="handleSuccess" />
   </PageWrapper>
 </template>
 <script lang="ts" setup>
@@ -44,12 +43,12 @@
   import { BasicTable, useTable, TableAction } from '@/components/Table';
   import { getAccountList } from '@/api/demo/system';
   import { PageWrapper } from '@/components/Page';
-  // import DeptTree from './DeptTree.vue';
+  import EquipmentTree from './EquipmentTree.vue';
 
   import { useModal } from '@/components/Modal';
-  import AccountModal from './AccountModal.vue';
+  import EquipmentModal from './EquipmentModal.vue';
 
-  import { columns, searchFormSchema } from './account.data';
+  import { columns, searchFormSchema } from './equipment.data';
   import { useGo } from '@/hooks/web/usePage';
 
   defineOptions({ name: 'AccountManagement' });
@@ -58,7 +57,7 @@
   const [registerModal, { openModal }] = useModal();
   const searchInfo = reactive<Recordable>({});
   const [registerTable, { reload, updateTableDataRecord }] = useTable({
-    title: '账号列表',
+    title: '设备列表',
     api: getAccountList,
     rowKey: 'id',
     columns,
@@ -75,7 +74,7 @@
       return info;
     },
     actionColumn: {
-      width: 150,
+      width: 120,
       title: '操作',
       dataIndex: 'action',
       // slots: { customRender: 'action' },
@@ -111,12 +110,13 @@
     }
   }
 
-  // function handleSelect(deptId = '') {
-  //   searchInfo.deptId = deptId;
-  //   reload();
-  // }
+  function handleSelect(deptId = '') {
+    searchInfo.deptId = deptId;
+    reload();
+  }
 
   function handleView(record: Recordable) {
     go('/system/account_detail/' + record.id);
   }
 </script>
+./equipment.data

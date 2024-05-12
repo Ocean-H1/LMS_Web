@@ -37,7 +37,7 @@
       }
 
       return () => {
-        // Role-based value control
+        // Role-based value control。
         return renderAuth();
       };
     },

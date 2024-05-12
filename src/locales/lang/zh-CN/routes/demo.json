@@ -150,9 +150,12 @@
     "vxeTableAccount": "账号管理(VxeTable)",
     "account_detail": "账号详情",
     "password": "修改密码",
-    "dept": "部门管理",
+    "dept": "学院管理",
     "menu": "菜单管理",
-    "role": "角色管理"
+    "role": "角色管理",
+    "equipment": "设备管理",
+    "log": "日志管理",
+    "logUpload": "日志上传"
   },
   "table": {
     "table": "Table",
