@@ -58,12 +58,18 @@ export interface MenuListItem {
 }
 
 export interface RoleListItem {
-  id: string;
-  roleName: string;
+  // id: string;
+  // roleName: string;
+  // roleValue: string;
+  // status: number;
+  // orderNo: string;
+  // createTime: string;
+
+  // 角色id
   roleValue: string;
-  status: number;
-  orderNo: string;
-  createTime: string;
+  // 角色名
+  roleName: string;
+  permissions: string;
 }
 
 /**

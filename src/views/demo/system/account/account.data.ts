@@ -10,18 +10,18 @@ import { BasicColumn, FormSchema } from '@/components/Table';
  *  ...
  * }
  */
-export const deptMap = (() => {
-  const pDept = ['计算机学院', '计算机学院', '计算机学院'];
-  const cDept = ['网络工程', '软件工程', '数据科学与大数据', '计算机科学'];
+// export const deptMap = (() => {
+//   const pDept = ['计算机学院', '计算机学院', '计算机学院'];
+//   const cDept = ['网络工程', '软件工程', '数据科学与大数据', '计算机科学'];
 
-  return pDept.reduce((map, p, pIdx) => {
-    map[pIdx] = p;
+//   return pDept.reduce((map, p, pIdx) => {
+//     map[pIdx] = p;
 
-    cDept.forEach((c, cIndex) => (map[`${pIdx}-${cIndex}`] = `${p}-${c}`));
+//     cDept.forEach((c, cIndex) => (map[`${pIdx}-${cIndex}`] = `${p}-${c}`));
 
-    return map;
-  }, {});
-})();
+//     return map;
+//   }, {});
+// })();
 
 export const columns: BasicColumn[] = [
   {
@@ -64,82 +64,89 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'account',
+    field: 'username',
     label: '用户名',
     component: 'Input',
     colProps: { span: 8 },
   },
   {
-    field: 'nickname',
-    label: '昵称',
+    field: 'email',
+    label: '邮箱',
     component: 'Input',
     colProps: { span: 8 },
   },
+  // {
+  //   field: 'nickname',
+  //   label: '昵称',
+  //   component: 'Input',
+  //   colProps: { span: 8 },
+  // },
 ];
 
 export const accountFormSchema: FormSchema[] = [
   {
-    field: 'account',
+    field: 'username',
     label: '用户名',
     component: 'Input',
-    helpMessage: ['本字段演示异步验证', '不能输入带有admin的用户名'],
+    // helpMessage: ['本字段演示异步验证', '不能输入带有admin的用户名'],
     rules: [
       {
         required: true,
         message: '请输入用户名',
       },
-      {
-        trigger: 'blur',
-        validator(_, value) {
-          return new Promise((resolve, reject) => {
-            if (!value) return resolve();
-            isAccountExist(value)
-              .then(resolve)
-              .catch((err) => {
-                reject(err.message || '验证失败');
-              });
-          });
-        },
-      },
+      // {
+      //   trigger: 'blur',
+      //   validator(_, value) {
+      //     return new Promise((resolve, reject) => {
+      //       if (!value) return resolve();
+      //       isAccountExist(value)
+      //         .then(resolve)
+      //         .catch((err) => {
+      //           reject(err.message || '验证失败');
+      //         });
+      //     });
+      //   },
+      // },
     ],
   },
   {
-    field: 'pwd',
+    field: 'password',
     label: '密码',
     component: 'InputPassword',
     required: true,
-    ifShow: false,
+    // ifShow: false,
   },
   {
     label: '角色',
-    field: 'role',
+    field: 'role_name',
     component: 'ApiSelect',
     componentProps: {
+      showSearch: true,
       api: getAllRoleList,
       labelField: 'roleName',
       valueField: 'roleValue',
     },
     required: true,
   },
-  {
-    field: 'dept',
-    label: '所属学院',
-    component: 'TreeSelect',
-    componentProps: {
-      fieldNames: {
-        label: 'deptName',
-        value: 'id',
-      },
-      getPopupContainer: () => document.body,
-    },
-    required: true,
-  },
-  {
-    field: 'nickname',
-    label: '昵称',
-    component: 'Input',
-    required: true,
-  },
+  // {
+  //   field: 'dept',
+  //   label: '所属学院',
+  //   component: 'TreeSelect',
+  //   componentProps: {
+  //     fieldNames: {
+  //       label: 'deptName',
+  //       value: 'id',
+  //     },
+  //     getPopupContainer: () => document.body,
+  //   },
+  //   required: true,
+  // },
+  // {
+  //   field: 'nickname',
+  //   label: '昵称',
+  //   component: 'Input',
+  //   required: true,
+  // },
 
   {
     label: '邮箱',
@@ -148,9 +155,9 @@ export const accountFormSchema: FormSchema[] = [
     required: true,
   },
 
-  {
-    label: '备注',
-    field: 'remark',
-    component: 'InputTextArea',
-  },
+  // {
+  //   label: '备注',
+  //   field: 'remark',
+  //   component: 'InputTextArea',
+  // },
 ];
