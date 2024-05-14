@@ -155,7 +155,13 @@
     "role": "角色管理",
     "equipment": "设备管理",
     "log": "日志管理",
-    "logUpload": "日志上传"
+    "logUpload": "日志上传",
+    "lab": "实验室管理"
+  },
+  "reserve": {
+    "moduleName": "预约管理",
+    "reserveLab": "预约实验室",
+    "myReservations": "我的预约"
   },
   "table": {
     "table": "Table",
